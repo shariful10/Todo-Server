@@ -14,7 +14,7 @@ const cors = require("cors");
 // });
 
 const corsOptions = {
-	origin: "*",
+	origin: "https://todo-module-3.vercel.app",
 	credentials: true,
 	optionSuccessStatus: 200,
 };
