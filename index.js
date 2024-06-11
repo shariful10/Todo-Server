@@ -6,7 +6,8 @@ const { MongoClient, ObjectId } = require("mongodb");
 
 const cors = require("cors");
 
-app.use(cors());
+app.use(cors({ origin: "https://todo-module-3.vercel.app" }));
+
 app.use(express.json());
 
 const uri = `mongodb+srv://todo:todo@cluster0.xogsopc.mongodb.net/todo?retryWrites=true&w=majority&appName=Cluster0`;
