@@ -10,7 +10,7 @@
 		{
 			"src": "/(.*)",
 			"dest": "/",
-			"methods": ["GET", "DELETE", "PATCH", "POST", "PUT"]
+			"methods": ["GET", "DELETE", "PATCH", "POST", "PUT", "OPTIONS"]
 		}
 	]
 }

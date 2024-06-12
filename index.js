@@ -53,19 +53,19 @@ async function run() {
 
 		app.get("/task/:id", async (req, res) => {
 			const id = req.params.id;
-			const result = await taskCollection.findOne({ _id: ObjectId(id) });
+			const result = await taskCollection.findOne({ _id: new ObjectId(id) });
 			res.send(result);
 		});
 
 		app.delete("/task/:id", async (req, res) => {
 			const id = req.params.id;
-			const result = await taskCollection.deleteOne({ _id: ObjectId(id) });
+			const result = await taskCollection.deleteOne({ _id: new ObjectId(id) });
 			res.send(result);
 		});
 
 		app.get("/task/:id", async (req, res) => {
 			const id = req.params.id;
-			const result = await taskCollection.findOne({ _id: ObjectId(id) });
+			const result = await taskCollection.findOne({ _id: new ObjectId(id) });
 			res.send(result);
 		});
 
@@ -73,25 +73,24 @@ async function run() {
 			const id = req.params.id;
 			const task = req.body;
 
-			const filter = { _id: ObjectId(id) };
-
 			const updateDoc = {
 				$set: {
-					status: task.status,
+					isCompleted: task.isCompleted,
 					title: task.title,
 					description: task.description,
-					dateTime: task.dateTime,
 					priority: task.priority,
 				},
 			};
 
-			const result = await taskCollection.updateOne(filter, updateDoc);
+			const result = await taskCollection.updateOne(
+				{ _id: new ObjectId(id) },
+				updateDoc,
+				{ upsert: true }
+			);
 			res.send(result);
 		});
 
-		console.log(
-			"Pinged your deployment. You successfully connected to MongoDB!"
-		);
+		console.log("Successfully connected to MongoDB!");
 	} finally {
 	}
 }
